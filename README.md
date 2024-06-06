@@ -1,6 +1,6 @@
 # Introduction to AI
 
-Lab1 - State space search (BFS, UCS, A*)
-Lab2 - PL Resolution
-Lab3 - Decision tree
-Lab4 - Neural network using genetic algorithm and mutation
+Lab1 - State space search (BFS, UCS, A*)<br>
+Lab2 - PL Resolution<br>
+Lab3 - Decision tree<br>
+Lab4 - Neural network using genetic algorithm and mutation<br>
