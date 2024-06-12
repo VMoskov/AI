@@ -31,12 +31,18 @@ if __name__ == '__main__':
     population = [NeuralNetwork(input_size, architecture, output_size) for _ in range(args.popsize)]
 
     for iteration in range(1, args.iter + 1):
-        population = sorted(population, key=lambda x: x.loss(x.forward(train_data), y))
+        fitness = {i: 1 / nn.loss(nn.forward(train_data), y) for i, nn in enumerate(population)}
+        total_fitness = sum(fitness.values())
+
+        sorted_indices = sorted(range(len(population)), key=lambda x: fitness[x], reverse=True)
+        population = [population[i] for i in sorted_indices]
+
         elite = population[:args.elitism]
         new_population = elite
+        selection_probs = [fitness[i] / total_fitness for i in range(args.popsize)]
 
         for _ in range(args.popsize - args.elitism):
-            parent1, parent2 = np.random.choice(population, 2)
+            parent1, parent2 = np.random.choice(population, 2, p=selection_probs)
             child = NeuralNetwork.crossover(parent1, parent2)
             child.mutate(args.p, args.K)
             new_population.append(child)
