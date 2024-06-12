@@ -27,6 +27,9 @@ class NeuralNetwork:
                 f'output size: {self.layer_dimensions[-1]}):\n'
                 f'\tWeights: {self.w}\n'
                 f'\tBiases: {self.b}')
+    
+    def __hash__(self):
+        return hash(str(self))
 
     @staticmethod
     def prepare_data(data):
